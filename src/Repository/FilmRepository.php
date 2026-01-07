@@ -16,6 +16,32 @@ class FilmRepository extends ServiceEntityRepository
         parent::__construct($registry, Film::class);
     }
 
+    /**
+     * @return Film[] Returns an array of Film objects
+     */
+    public function findByCreated(): array
+    {
+        return $this->createQueryBuilder('f')
+            ->orderBy('f.createdAt', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Film[] Returns an array of Film objects
+     */
+    public function findByUpdated(): array
+    {
+        return $this->createQueryBuilder('f')
+            ->orderBy('f.updatedAt', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
     //    /**
     //     * @return Film[] Returns an array of Film objects
     //     */
