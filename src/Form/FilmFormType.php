@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Film;
+use App\Entity\Genre;
+use App\Entity\Realisateur;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+
+class FilmFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('titre', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Titre du film'
+                ],
+                'label' => 'Titre',
+                'label_attr' => ['class' => 'my-2']
+            ])
+            ->add('annee', NumberType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Annéee de sortie'
+                ],
+                'label' => 'Année',
+                'label_attr' => ['class' => 'my-2']
+            ])
+            ->add('image', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Couverture du film'
+                ],
+                'label' => 'Couverture',
+                'label_attr' => ['class' => 'my-2']
+            ])
+            ->add('synopsis', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Synopsis du film'
+                ],
+                'label' => 'Synopsis',
+                'label_attr' => ['class' => 'my-2']
+            ])
+            ->add('createdAt', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Date d\'ajout'
+                ],
+                'label' => 'Ajouté le',
+                'widget' => 'single_text',
+                'label_attr' => ['class' => 'my-2']
+            ])
+            ->add('updatedAt', null, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Date de modification'
+                ],
+                'label' => 'Mis à jour le',
+                'widget' => 'single_text',
+                'label_attr' => ['class' => 'my-2']
+            ])
+            ->add('realisateur', EntityType::class, [                
+                'attr' => [
+                    'class' => 'form-control'                    
+                ],
+                'class' => Realisateur::class,
+                'choice_label' => 'id',
+                'label_attr' => ['class' => 'my-2']
+            ])
+            ->add('genre', EntityType::class, [                
+                'attr' => [
+                    'class' => 'form-control mb-4'                    
+                ],
+                'class' => Genre::class,
+                'choice_label' => 'id',
+                'label_attr' => ['class' => 'my-2']
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Film::class,
+        ]);
+    }
+}

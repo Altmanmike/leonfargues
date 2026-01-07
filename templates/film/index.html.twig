@@ -6,6 +6,7 @@
 
 <div class="container my-5">
 
+    {% if film %}
     <table class="table">
         <thead>
             <tr>
@@ -18,8 +19,7 @@
             <th scope="col">Modifie le</th>
             </tr>
         </thead>
-        <tbody>
-            {% if film %}
+        <tbody>            
             <tr>      
             <td>{{ film.id }}</td>
             <td>{{ film.titre }}</td>
@@ -28,10 +28,10 @@
             <td>{{ film.synopsis }}</td>
             <td>{{ film.createdAt|date('d/m/Y') }}</td>
             <td>{{ film.updatedAt|date('d/m/Y') }}</td>
-            </tr>
-            {% endif %}
+            </tr>            
         </tbody>
     </table>
+    {% endif %}
 
 </div>
 
