@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Film{% endblock %}
 
 {% block body %}
 
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for film in films %}
+            {% if film %}
             <tr>      
             <td>{{ film.id }}</td>
             <td>{{ film.titre }}</td>
@@ -29,7 +29,7 @@
             <td>{{ film.createdAt|date('d/m/Y') }}</td>
             <td>{{ film.updatedAt|date('d/m/Y') }}</td>
             </tr>
-            {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 

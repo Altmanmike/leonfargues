@@ -4,8 +4,14 @@
 
 {% block body %}
 
-    <div class="container my-5">         
+    <div class="container my-5">
 
+        <form class="form-control" action="{{ path('app_rechercher') }}" method="POST">
+            <input name="val" class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
+            <button type="submit">Soumettre</button>
+        </form>
+        
+        {% if film %}
         <div class="card" style="width: 18rem;">
             <img src="{{ film.image }}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -14,6 +20,7 @@
                 <p class="badge text-bg-secondary">{{ film.annee }}</p>
             </div>
         </div>
+        {% endif %}  
 
     </div>
 
