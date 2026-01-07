@@ -5,12 +5,14 @@ namespace App\Form;
 use App\Entity\Film;
 use App\Entity\Genre;
 use App\Entity\Realisateur;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class FilmFormType extends AbstractType
 {
@@ -33,7 +35,7 @@ class FilmFormType extends AbstractType
                 'label' => 'Année',
                 'label_attr' => ['class' => 'my-2']
             ])
-            ->add('image', TextType::class, [
+            ->add('image', FileType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Couverture du film'
@@ -41,7 +43,7 @@ class FilmFormType extends AbstractType
                 'label' => 'Couverture',
                 'label_attr' => ['class' => 'my-2']
             ])
-            ->add('synopsis', TextType::class, [
+            ->add('synopsis', TextareaType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'Synopsis du film'
